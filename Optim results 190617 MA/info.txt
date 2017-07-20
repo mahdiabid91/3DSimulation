@@ -1,0 +1,7 @@
+result_v3_zym: av contrainte on shoulder amplitude ss contrainte on elbow amplitude, cont acc 10 15 15
+result_v3_zym2: ss contrainte on shoulder amplitude ss contrainte on elbow amplitude, cont acc 10 15 15
+result_v2_zym2: ss contrainte on shoulder amplitude ss contrainte on elbow amplitude, cont acc 10 15 15
+result_v1_zym2: ss contrainte on shoulder amplitude ss contrainte on elbow amplitude, cont acc 10 15 15
+result_v1_zym3: ss contrainte on shoulder amplitude ss contrainte on elbow amplitude, cont acc [10 15 15]*v1, cre cle msi:msf
+result_v3_zym3: ss contrainte on shoulder amplitude ss contrainte on elbow amplitude, cont acc [10 15 15]*v3, cre cle msi:msf
+result_v3_zym4: ss contrainte on shoulder amplitude ss contrainte on elbow amplitude, cont acc [10 15 15]*v3, cre cle 1:end

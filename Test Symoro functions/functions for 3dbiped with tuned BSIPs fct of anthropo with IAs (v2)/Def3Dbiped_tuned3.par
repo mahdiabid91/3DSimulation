@@ -1,0 +1,49 @@
+(* Robotname = '3Dbiped' *)
+NL =25
+NJ =25
+NF =25
+Type = 1
+(* Geometric parameters *)
+Ant = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,7,15,16,17,18,19,16,21,22,23,16}
+Sigma = {0,0,0,0,0,0,2,0,0,0,0,0,0,2,0,2,0,0,0,2,0,0,0,2,2}
+B = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+d = {L2,0,L3,L4,0,0,L5/2,L5/2,0,0,L4,L3,0,L2,0,0,-L8,0,-L9,-L10,L8,0,-L9,-L10,0}
+R = {-L1,0,0,0,0,0,0,0,0,0,0,0,0,L1,L6,L7,0,0,0,0,0,0,0,0,L11}
+gamma = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+Alpha = {0,Pi/2,0,0,-Pi/2,-Pi/2,0,0,Pi/2,-Pi/2,0,0,Pi/2,0,0,0,Pi/2,Pi/2,0,0,Pi/2,Pi/2,0,0,0}
+Mu = {1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,0,1,1,1,0,1,1,1,0,0}
+Theta = {t1,t2,t3,t4,t5-Pi/2,t6,0,t8,t9-Pi/2,t10,t11,t12,t13,0,t15,0,t17+Pi/2,t18,t19,0,t21+Pi/2,t22,t23,0,0}
+(* Dynamic parameters and external forces *)
+XX = {xx1,xx2,xx3,xx4,xx5,xx6,xx7,xx8,xx9,xx10,xx11,xx12,xx13,xx14,xx15,xx16,xx17,xx18,xx19,xx20,xx21,xx22,xx23,xx24,xx25}
+XY = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+XZ = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+YY = {yy1,yy2,yy3,yy4,yy5,yy6,yy7,yy8,yy9,yy10,yy11,yy12,yy13,yy14,yy15,yy16,yy17,yy18,yy19,yy20,yy21,yy22,yy23,yy24,yy25}
+YZ = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+ZZ = {zz1,zz2,zz3,zz4,zz5,zz6,zz7,zz8,zz9,zz10,zz11,zz12,zz13,zz14,zz15,zz16,zz17,zz18,zz19,zz20,zz21,zz22,zz23,zz24,zz25}
+MX = {mx1,mx2,mx3,mx4,mx5,mx6,mx7,mx8,mx9,mx10,mx11,mx12,mx13,mx14,mx15,mx16,mx17,mx18,mx19,mx20,mx21,mx22,mx23,mx24,mx25}
+MY = {my1,my2,my3,my4,my5,my6,my7,my8,my9,my10,my11,my12,my13,my14,my15,my16,my17,my18,my19,my20,my21,my22,my23,my24,my25}
+MZ = {mz1,mz2,mz3,mz4,mz5,mz6,mz7,mz8,mz9,mz10,mz11,mz12,mz13,mz14,mz15,mz16,mz17,mz18,mz19,mz20,mz21,mz22,mz23,mz24,mz25}
+M = {m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12,m13,m14,m15,m16,m17,m18,m19,m20,m21,m22,m23,m24,m25}
+IA = {IA1,IA2,IA3,IA4,IA5,IA6,IA7,IA8,IA9,IA10,IA11,IA12,IA13,IA14,IA15,IA16,IA17,IA18,IA19,IA20,IA21,IA22,IA23,IA24,IA25}
+FV = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+FS = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+FX = {0,0,0,0,0,0,0,0,0,0,0,0,0,FX14,0,0,0,0,0,0,0,0,0,0,0}
+FY = {0,0,0,0,0,0,0,0,0,0,0,0,0,FY14,0,0,0,0,0,0,0,0,0,0,0}
+FZ = {0,0,0,0,0,0,0,0,0,0,0,0,0,FZ14,0,0,0,0,0,0,0,0,0,0,0}
+CX = {0,0,0,0,0,0,0,0,0,0,0,0,0,CX14,0,0,0,0,0,0,0,0,0,0,0}
+CY = {0,0,0,0,0,0,0,0,0,0,0,0,0,CY14,0,0,0,0,0,0,0,0,0,0,0}
+CZ = {0,0,0,0,0,0,0,0,0,0,0,0,0,CZ14,0,0,0,0,0,0,0,0,0,0,0}
+(* Joint parameters *)
+QP = {QP1,QP2,QP3,QP4,QP5,QP6,0,QP8,QP9,QP10,QP11,QP12,QP13,0,QP15,0,QP17,QP18,QP19,0,QP21,QP22,QP23,0,0}
+QDP = {QDP1,QDP2,QDP3,QDP4,QDP5,QDP6,0,QDP8,QDP9,QDP10,QDP11,QDP12,QDP13,0,QDP15,0,QDP17,QDP18,QDP19,0,QDP21,QDP22,QDP23,0,0}
+GAM = {GAM1,GAM2,GAM3,GAM4,GAM5,GAM6,0,GAM8,GAM9,GAM10,GAM11,GAM12,GAM13,0,GAM15,0,GAM17,GAM18,GAM19,0,GAM21,GAM22,GAM23,0,0}
+(* Speed and acceleration of the base *)
+W0 = {WX0,WY0,WZ0}
+WP0 = {WPX0,WPY0,WPZ0}
+V0 = {VX0,VY0,VZ0}
+VP0 = {VPX0,VPY0,VPZ0}
+(* Acceleration of gravity *)
+G = {G1,0,0}
+(* Transformation of 0 frame position fT0 *)
+Z = {1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1}
+(* End of definition *)

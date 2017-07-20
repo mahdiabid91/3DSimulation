@@ -1,0 +1,50 @@
+(* Robotname = '3Dbiped' *)
+NL =14
+NJ =14
+NF =14
+Type = 1
+is_mobile = 0
+(* Geometric parameters *)
+Ant = {0,1,2,3,4,5,6,7,8,9,10,11,12,13}
+Sigma = {0,0,0,0,0,0,2,0,0,0,0,0,0,2}
+B = {0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+d = {L2,0,L3,L4,0,0,L5/2,L5/2,0,0,L4,L3,0,L2}
+R = {-L1,0,0,0,0,0,0,0,0,0,0,0,0,L1}
+gamma = {0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+Alpha = {0,Pi/2,0,0,-Pi/2,-Pi/2,0,0,Pi/2,-Pi/2,0,0,Pi/2,0}
+Mu = {1,1,1,1,1,1,0,1,1,1,1,1,1,0}
+Theta = {t1,t2,t3,t4,t5-Pi/2,t6,0,t8,t9-Pi/2,t10,t11,t12,t13,0}
+(* Dynamic parameters and external forces *)
+XX = {XX1,0,XX3,XX4,0,0,0,0,0,0,XX11,XX12,0,XX14}
+XY = {0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+XZ = {0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+YY = {YY1,0,YY3,YY4,0,0,0,0,0,0,YY11,YY12,0,YY14}
+YZ = {0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+ZZ = {ZZ1,0,ZZ3,ZZ4,0,0,0,0,0,0,ZZ11,ZZ12,0,ZZ14}
+MX = {MX1,0,MX3,MX4,0,0,0,0,0,0,MX11,MX12,0,MX14}
+MY = {MY1,0,MY3,MY4,0,0,0,0,0,0,MY11,MY12,0,MY14}
+MZ = {MZ1,0,MZ3,MZ4,0,0,0,0,0,0,MZ11,MZ12,0,MZ14}
+M = {M1,M1,M3,M4,M4,M4,M4,M11,M11,M11,M11,M12,M14,M14}
+IA = {0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+FV = {0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+FS = {0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+FX = {0,0,0,0,0,0,0,0,0,0,0,0,0,FX14}
+FY = {0,0,0,0,0,0,0,0,0,0,0,0,0,FY14}
+FZ = {0,0,0,0,0,0,0,0,0,0,0,0,0,FZ14}
+CX = {0,0,0,0,0,0,0,0,0,0,0,0,0,CX14}
+CY = {0,0,0,0,0,0,0,0,0,0,0,0,0,CY14}
+CZ = {0,0,0,0,0,0,0,0,0,0,0,0,0,CZ14}
+(* Joint parameters *)
+QP = {QP1,QP2,QP3,QP4,QP5,QP6,0,QP8,QP9,QP10,QP11,QP12,QP13,0}
+QDP = {QDP1,QDP2,QDP3,QDP4,QDP5,QDP6,0,QDP8,QDP9,QDP10,QDP11,QDP12,QDP13,0}
+GAM = {GAM1,GAM2,GAM3,GAM4,GAM5,GAM6,0,GAM8,GAM9,GAM10,GAM11,GAM12,GAM13,0}
+(* Speed and acceleration of the base *)
+W0 = {WX0,WY0,WZ0}
+WP0 = {WPX0,WPY0,WPZ0}
+V0 = {VX0,VY0,VZ0}
+VP0 = {VPX0,VPY0,VPZ0}
+(* Acceleration of gravity *)
+G = {-9.81,0,0}
+(* Transformation of 0 frame position fT0 *)
+Z = {1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1}
+(* End of definition *)

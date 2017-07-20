@@ -1,0 +1,169 @@
+function  C=C_geometric(Q,L)
+
+% Q is ndof x nsamples matrix : joints positions for all samples
+% L is 13 x 1 matrix : dimensions
+
+global error_MGI nsamples
+global Lt L1 L2 L3 L4 L5 p6 p5 p4 p3 p2 p1
+
+% nsamples=size(Q,2);
+
+%% Constraints in Double Support phase
+% for samples number 1 & end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The distance between the foot in flat contact with the ground and the hip must remain under a maximum limit lhip (Cr1,Cf1,Cr2,Cf2)%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+lhip=0.98*(L(3)+L(4));
+
+% % for initial config
+% pos_right_ankle=T_0_1(Q(:,1),L);pos_right_ankle=pos_right_ankle(:,4);
+% pos_right_hip=T_0_4(Q(:,1),L);pos_right_hip=pos_right_hip(:,4);
+% d_right=norm(pos_right_ankle-pos_right_hip); %distance
+% Cr1=d_right-lhip;
+% pos_left_ankle=T_0_12(Q(:,1),L);pos_left_ankle=pos_left_ankle(:,4);
+% pos_left_hip=T_0_8(Q(:,1),L);pos_left_hip=pos_left_hip(:,4);
+% d_left=norm(pos_left_ankle-pos_left_hip); %distance
+% Cf1=d_left-lhip;
+% 
+% % for final config
+% pos_right_ankle=T_0_1(Q(:,end),L);pos_right_ankle=pos_right_ankle(:,4);
+% pos_right_hip=T_0_4(Q(:,end),L);pos_right_hip=pos_right_hip(:,4);
+% d_right=norm(pos_right_ankle-pos_right_hip); %distance
+% Cr2=d_right-lhip;
+% pos_left_ankle=T_0_12(Q(:,end),L);pos_left_ankle=pos_left_ankle(:,4);
+% pos_left_hip=T_0_8(Q(:,end),L);pos_left_hip=pos_left_hip(:,4);
+% d_left=norm(pos_left_ankle-pos_left_hip); %distance
+% Cf2=d_left-lhip;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Feet internal collision avoidance: This constraint keeps the landing foot from occupying simultaneously the same ground area with 
+% the stance foot. The heel and the toe position of the left foot through the lateral axis (ys) must satisfy                      
+% y_rff < -lp/2 & y_rrf < -lp/2 (C1,C2,C3,C4)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+lp=L(13);
+
+% for initial config
+P_rff=T_0_rff(Q(:,1),L);y_rff=P_rff(2,4);
+C1=y_rff+lp/2;
+P_rrf=T_0_rrf(Q(:,1),L);y_rrf=P_rrf(2,4);
+C2=y_rrf+lp/2;
+
+% for final config
+P_rff=T_0_rff(Q(:,end),L);y_rff=P_rff(2,4);
+C3=y_rff+lp/2;
+P_rrf=T_0_rrf(Q(:,end),L);y_rrf=P_rrf(2,4);
+C4=y_rrf+lp/2;
+
+
+%% Constraints in Single Support phase
+% for samples number between 2 & end-1
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Constraints on the position of the four corners of the swing foot are imposed in order to avoid collision between the swing leg %%%
+% and the stance leg (Cleg) or the ground (Cxpos) %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Cxpos=zeros(4*(nsamples-2),1);
+Cleg=zeros(2*(nsamples-2),1);
+
+for k=2:(nsamples-1)
+    
+% positive x coordinates of swing foot corners    
+    
+P_rff=T_0_rff(Q(:,k),L);x_rff=P_rff(1,4);
+P_lff=T_0_lff(Q(:,k),L);x_lff=P_lff(1,4);
+P_lrf=T_0_lrf(Q(:,k),L);x_lrf=P_lrf(1,4);
+P_rrf=T_0_rrf(Q(:,k),L);x_rrf=P_rrf(1,4);
+
+Cxpos((4*(k-2)+1):(4*(k-1)))=-[x_rff;x_lff;x_lrf;x_rrf];
+
+% Minimum distance between the swinging ankle and the support ankle & knee
+% d(swing ankle,support ankle)>1.5*lp
+% d(swing ankle,support knee)>1.5*lp
+
+T0T12=T_0_12(Q(:,k),L);P_12=T0T12(:,4);
+T0T1=T_0_1(Q(:,k),L);P_1=T0T1(:,4);
+T0T3=T_0_3(Q(:,k),L);P_3=T0T3(:,4);
+
+d_1_12=norm(P_12-P_1); c_1_12=1.5*lp-d_1_12;
+d_3_12=norm(P_12-P_3); c_3_12=1.5*lp-d_3_12;
+    
+Cleg((2*(k-2)+1):(2*(k-1)))=[c_1_12;c_3_12];
+
+end   
+
+
+%% Constraints in both phases
+% for samples number between 1 & end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% constraints on the upper limbs configurations are added to avoid collision between both arms & the torso (Cr_elbow,Cl_elbow,Cr_hand,Cl_hand)%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Cr_elbow=zeros(nsamples,1);
+Cl_elbow=Cr_elbow;
+Cr_hand=Cr_elbow;
+Cl_hand=Cr_elbow;
+
+L8=L(8);L5=L(5);
+
+for k=1:nsamples
+   
+
+% Minimum distance between the elbows (O19,O23) & the pelvic joint (O15)
+% d(elbows,pelvic joint)>0.8*L8
+T0T19=T_0_19(Q(:,k),L);P_19=T0T19(:,4); %right elbow position
+T0T23=T_0_23(Q(:,k),L);P_23=T0T23(:,4); %left elbows position
+T0T15=T_0_15(Q(:,k),L);P_15=T0T15(:,4); %pelvic joint position
+
+d_15_19=norm(P_15-P_19); c_15_19=0.8*L8-d_15_19;
+d_15_23=norm(P_15-P_23); c_15_23=0.8*L8-d_15_23;
+
+Cr_elbow(k)=c_15_19;
+Cl_elbow(k)=c_15_23;
+
+% Minimum distance between the hands (O20,O24) & pelvis center (O7)
+% d(hands,pelvis center)>0.6*L5
+T0T20=T_0_20(Q(:,k),L);P_20=T0T20(:,4); %right elbow position
+T0T24=T_0_24(Q(:,k),L);P_24=T0T24(:,4); %left elbows position
+T0T7=T_0_7(Q(:,k),L);P_7=T0T7(:,4); %pelvic joint position
+
+d_7_20=norm(P_7-P_20); c_7_20=0.6*L5-d_7_20;
+d_7_24=norm(P_7-P_24); c_7_24=0.6*L5-d_7_24;
+
+Cr_hand(k)=c_7_20;
+Cl_hand(k)=c_7_24;
+
+
+end  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% In DS: The distance between the ankles and the hip centers must remain under a maximum limit lhip (C_ds1,C_ds2)%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+P_O1=[L2;0;-L1];
+P_O12=[L2;-p5;-p6-L1];
+% P_O7=[p1;p2;p3];
+P_O4=[p1;p2+(L5/2);p3];
+P_O8=[p1;p2-(L5/2);p3];
+
+C_ds1=norm(P_O1-P_O4)-lhip;
+C_ds2=norm(P_O8-P_O12)-lhip;
+
+lhip_min=0.92*(L(3)+L(4));
+C_ds1_min=lhip_min-norm(P_O1-P_O4);
+C_ds2_min=lhip_min-norm(P_O8-P_O12);
+
+% alpha=0.94;
+% c=((alpha^2-1)*(L3^2+L4^2)+2*L3*L4*alpha^2)/(2*L3*L4);
+% angle=acos(c)/degree
+
+%%
+% C=[Cr1;Cf1;Cr2;Cf2;C1;C2;C3;C4;Cxpos;Cleg;Cr_elbow;Cl_elbow;Cr_hand;Cl_hand];
+C=[C_ds1_min;C_ds2_min;C_ds1;C_ds2;C1;C2;C3;C4;Cxpos;Cleg;Cr_elbow;Cl_elbow;Cr_hand;Cl_hand];
+
+    
+end

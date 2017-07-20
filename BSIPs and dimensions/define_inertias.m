@@ -1,0 +1,58 @@
+global M1 M3 M4 M11 M12 M14 M15 M16 M19 M20 M23 M24 M25
+global L1 L2 L3 L4 L6 L7 L9 L10 L11
+
+global XX1 XX3 XX4 XX11 XX12 XX14 XX15 XX16 XX19 XX20 XX23 XX24 XX25
+global YY1 YY3 YY4 YY11 YY12 YY14 YY15 YY16 YY19 YY20 YY23 YY24 YY25
+global ZZ1 ZZ3 ZZ4 ZZ11 ZZ12 ZZ14 ZZ15 ZZ16 ZZ19 ZZ20 ZZ23 ZZ24 ZZ25
+
+%% Inertia wrt center of mass
+I_pelvis=M15/10000*L6^2*[40;42;44].^2;
+I_head=M25/10000*L11^2*[30;28;21].^2;
+I_arm=M19/10000*L9^2*[13;29;30].^2;
+I_forearm=M20/10000*L10^2*[11;28;28].^2;
+I_thigh=M4/10000*L4^2*[15;29;30].^2;
+I_shank=M3/10000*L3^2*[10;28;28].^2;
+I_foot=M1/10000*(L1^2+L2^2)*[49;48;22].^2;
+I_trunk=M16/10000*L7^2*[96;93;85].^2;
+
+XX15=I_pelvis(1);YY15=I_pelvis(2);ZZ15=I_pelvis(3);
+XX25=I_head(1);YY25=I_head(2);ZZ25=I_head(3);
+XX19=I_arm(1);YY19=I_arm(2);ZZ19=I_arm(3);
+XX20=I_forearm(1);YY20=I_forearm(2);ZZ20=I_forearm(3);
+XX4=I_thigh(1);YY4=I_thigh(2);ZZ4=I_thigh(3);
+XX3=I_shank(1);YY3=I_shank(2);ZZ3=I_shank(3);
+XX1=I_foot(1);YY1=I_foot(2);ZZ1=I_foot(3);
+XX16=I_trunk(1);YY16=I_trunk(2);ZZ16=I_trunk(3);
+
+%% Inertia wrt joint center
+
+% COM vectors
+r1=[SX1;SY1;SZ1]; r3=[SX3;SY3;SZ3]; r4=[SX4;SY4;SZ4]; r15=[SX15;SY15;SZ15];
+r16=[SX16;SY16;SZ16]; r19=[SX19;SY19;SZ19]; r20=[SX20;SY20;SZ20]; r25=[SX25;SY25;SZ25]; 
+% Inertia matrices
+I1=[XX1,0,0;0,YY1,0;0,0,ZZ1];I3=[XX3,0,0;0,YY3,0;0,0,ZZ3];I4=[XX4,0,0;0,YY4,0;0,0,ZZ4];
+I15=[XX15,0,0;0,YY15,0;0,0,ZZ15];I16=[XX16,0,0;0,YY16,0;0,0,ZZ16];I19=[XX19,0,0;0,YY19,0;0,0,ZZ19];
+I20=[XX20,0,0;0,YY20,0;0,0,ZZ20];I25=[XX25,0,0;0,YY25,0;0,0,ZZ25];
+
+% Theorem of Huygens
+E3=eye(3);
+I1p=I1+M1*(r1'*r1*E3-r1*r1');I3p=I3+M3*(r3'*r3*E3-r3*r3');I4p=I4+M4*(r4'*r4*E3-r4*r4');
+I15p=I15+M15*(r15'*r15*E3-r15*r15');I16p=I16+M16*(r16'*r16*E3-r16*r16');I19p=I19+M19*(r19'*r19*E3-r19*r19');
+I20p=I20+M20*(r20'*r20*E3-r20*r20');I25p=I25+M25*(r25'*r25*E3-r25*r25');
+
+% Inertia variables
+XX1=I1p(1,1);YY1=I1p(2,2);ZZ1=I1p(3,3);
+XX3=I3p(1,1);YY3=I3p(2,2);ZZ3=I3p(3,3);
+XX4=I4p(1,1);YY4=I4p(2,2);ZZ4=I4p(3,3);
+XX15=I15p(1,1);YY15=I15p(2,2);ZZ15=I15p(3,3);
+XX16=I16p(1,1);YY16=I16p(2,2);ZZ16=I16p(3,3);
+XX19=I19p(1,1);YY19=I19p(2,2);ZZ19=I19p(3,3);
+XX20=I20p(1,1);YY20=I20p(2,2);ZZ20=I20p(3,3);
+XX25=I25p(1,1);YY25=I25p(2,2);ZZ25=I25p(3,3);
+
+%% Inertias by symmetry
+XX23=XX19;YY23=YY19;ZZ23=ZZ19;
+XX24=XX20;YY24=YY20;ZZ24=ZZ20;
+XX11=XX4;YY11=YY4;ZZ11=ZZ4;
+XX12=XX3;YY12=YY3;ZZ12=ZZ3;
+XX14=XX1;YY14=YY1;ZZ14=ZZ1;

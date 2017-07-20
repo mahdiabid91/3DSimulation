@@ -1,0 +1,49 @@
+(* Robotname = '3Dbiped' *)
+NL =15
+NJ =15
+NF =15
+Type = 1
+(* Geometric parameters *)
+Ant = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14}
+Sigma = {2,0,0,0,0,0,0,2,0,0,0,0,0,0,2}
+B = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+d = {0,L2,0,L3,L4,0,0,L5/2,L5/2,0,0,L4,L3,0,L2}
+R = {0,-L1,0,0,0,0,0,0,0,0,0,0,0,0,L1}
+gamma = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+Alpha = {0,0,Pi/2,0,0,-Pi/2,-Pi/2,0,0,Pi/2,-Pi/2,0,0,Pi/2,0}
+Mu = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+Theta = {0,t1,t2,t3,t4,t5-Pi/2,t6,0,t8,t9-Pi/2,t10,t11,t12,t13,0}
+(* Dynamic parameters and external forces *)
+XX = {XX0,XX1,XX2,XX3,XX4,XX5,XX6,XX7,XX8,XX9,XX10,XX11,XX12,XX13,XX14}
+XY = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+XZ = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+YY = {YY0,YY1,YY2,YY3,YY4,YY5,YY6,YY7,YY8,YY9,YY10,YY11,YY12,YY13,YY14}
+YZ = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+ZZ = {ZZ0,ZZ1,ZZ2,ZZ3,ZZ4,ZZ5,ZZ6,ZZ7,ZZ8,ZZ9,ZZ10,ZZ11,ZZ12,ZZ13,ZZ14}
+MX = {MX0,MX1,MX2,MX3,MX4,MX5,MX6,MX7,MX8,MX9,MX10,MX11,MX12,MX13,MX14}
+MY = {MY0,MY1,MY2,MY3,MY4,MY5,MY6,MY7,MY8,MY9,MY10,MY11,MY12,MY13,MY14}
+MZ = {MZ0,MZ1,MZ2,MZ3,MZ4,MZ5,MZ6,MZ7,MZ8,MZ9,MZ10,MZ11,MZ12,MZ13,MZ14}
+M = {M0,M1,M2,M3,M4,M5,M6,M7,M8,M9,M10,M11,M12,M13,M14}
+IA = {0,IA1,IA2,IA3,IA4,IA5,IA6,IA7,IA8,IA9,IA10,IA11,IA12,IA13,IA14}
+FV = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+FS = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+FX = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,FX14}
+FY = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,FY14}
+FZ = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,FZ14}
+CX = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,CX14}
+CY = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,CY14}
+CZ = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,CZ14}
+(* Joint parameters *)
+QP = {0,QP1,QP2,QP3,QP4,QP5,QP6,0,QP8,QP9,QP10,QP11,QP12,QP13,0}
+QDP = {0,QDP1,QDP2,QDP3,QDP4,QDP5,QDP6,0,QDP8,QDP9,QDP10,QDP11,QDP12,QDP13,0}
+GAM = {0,GAM1,GAM2,GAM3,GAM4,GAM5,GAM6,0,GAM8,GAM9,GAM10,GAM11,GAM12,GAM13,0}
+(* Speed and acceleration of the base *)
+W0 = {WX0,WY0,WZ0}
+WP0 = {WPX0,WPY0,WPZ0}
+V0 = {VX0,VY0,VZ0}
+VP0 = {VPX0,VPY0,VPZ0}
+(* Acceleration of gravity *)
+G = {-9.81,0,0}
+(* Transformation of 0 frame position fT0 *)
+Z = {1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1}
+(* End of definition *)

@@ -1,0 +1,1122 @@
+% (********************************************)
+% (** SYMORO+ : SYmbolic MOdelling of RObots **)
+% (**========================================**)
+% (**      IRCCyN-ECN - 1, rue de la Noe     **)
+% (**      B.P.92101                         **)
+% (**      44321 Nantes cedex 3, FRANCE      **)
+% (**      www.irccyn.ec-nantes.fr           **)
+% (********************************************)
+
+
+%    Name of file : D:\The`se\3D_simulation\Test Symoro functions\functions for locomotor syst from 0 to 14 (BSIPs tuned_added frame 0_all mu=1)\Def_0_14_tuned_f0.dyn
+
+
+
+
+%      Geometric parameters   
+
+
+% j        ant      mu       sigma    gamma    b        alpha    d        theta    r
+
+
+% 1        0        1        2        0        0        0        0        0        0
+
+
+% 2        1        1        0        0        0        0        L2       t1       -L1
+
+%                                                       Pi
+% 3        2        1        0        0        0        --       0        t2       0
+%                                                       2
+
+% 4        3        1        0        0        0        0        L3       t3       0
+
+
+% 5        4        1        0        0        0        0        L4       t4       0
+
+%                                                       -Pi               -Pi
+% 6        5        1        0        0        0        ---      0        --- + t5 0
+%                                                        2                 2
+%                                                       -Pi
+% 7        6        1        0        0        0        ---      0        t6       0
+%                                                        2
+%                                                                L5
+% 8        7        1        2        0        0        0        --       0        0
+%                                                                2
+%                                                                L5
+% 9        8        1        0        0        0        0        --       t8       0
+%                                                                2
+%                                                       Pi                -Pi
+% 10       9        1        0        0        0        --       0        --- + t9 0
+%                                                       2                  2
+%                                                       -Pi
+% 11       10       1        0        0        0        ---      0        t10      0
+%                                                        2
+
+% 12       11       1        0        0        0        0        L4       t11      0
+
+
+% 13       12       1        0        0        0        0        L3       t12      0
+
+%                                                       Pi
+% 14       13       1        0        0        0        --       0        t13      0
+%                                                       2
+
+% 15       14       1        2        0        0        0        L2       0        L1
+
+
+
+
+%              Inertial parameters
+
+% j      XX     XY     XZ     YY     YZ     ZZ     MX     MY     MZ     M      Ia
+
+% 1      XX0    0      0      YY0    0      ZZ0    MX0    MY0    MZ0    M0     0
+
+% 2      XX1    0      0      YY1    0      ZZ1    MX1    MY1    MZ1    M1     IA1
+
+% 3      XX2    0      0      YY2    0      ZZ2    MX2    MY2    MZ2    M2     IA2
+
+% 4      XX3    0      0      YY3    0      ZZ3    MX3    MY3    MZ3    M3     IA3
+
+% 5      XX4    0      0      YY4    0      ZZ4    MX4    MY4    MZ4    M4     IA4
+
+% 6      XX5    0      0      YY5    0      ZZ5    MX5    MY5    MZ5    M5     IA5
+
+% 7      XX6    0      0      YY6    0      ZZ6    MX6    MY6    MZ6    M6     IA6
+
+% 8      XX7    0      0      YY7    0      ZZ7    MX7    MY7    MZ7    M7     IA7
+
+% 9      XX8    0      0      YY8    0      ZZ8    MX8    MY8    MZ8    M8     IA8
+
+% 10     XX9    0      0      YY9    0      ZZ9    MX9    MY9    MZ9    M9     IA9
+
+% 11     XX10   0      0      YY10   0      ZZ10   MX10   MY10   MZ10   M10    IA10
+
+% 12     XX11   0      0      YY11   0      ZZ11   MX11   MY11   MZ11   M11    IA11
+
+% 13     XX12   0      0      YY12   0      ZZ12   MX12   MY12   MZ12   M12    IA12
+
+% 14     XX13   0      0      YY13   0      ZZ13   MX13   MY13   MZ13   M13    IA13
+
+% 15     XX14   0      0      YY14   0      ZZ14   MX14   MY14   MZ14   M14    IA14
+
+
+
+%  External forces,friction parameters, joint velocities and accelerations
+
+% j       FX      FY      FZ      CX      CY      CZ      FS      FV      QP      QDP
+
+% 1       0       0       0       0       0       0       0       0       0       0
+
+% 2       0       0       0       0       0       0       0       0       QP1     QDP1
+
+% 3       0       0       0       0       0       0       0       0       QP2     QDP2
+
+% 4       0       0       0       0       0       0       0       0       QP3     QDP3
+
+% 5       0       0       0       0       0       0       0       0       QP4     QDP4
+
+% 6       0       0       0       0       0       0       0       0       QP5     QDP5
+
+% 7       0       0       0       0       0       0       0       0       QP6     QDP6
+
+% 8       0       0       0       0       0       0       0       0       0       0
+
+% 9       0       0       0       0       0       0       0       0       QP8     QDP8
+
+% 10      0       0       0       0       0       0       0       0       QP9     QDP9
+
+% 11      0       0       0       0       0       0       0       0       QP10    QDP10
+
+% 12      0       0       0       0       0       0       0       0       QP11    QDP11
+
+% 13      0       0       0       0       0       0       0       0       QP12    QDP12
+
+% 14      0       0       0       0       0       0       0       0       QP13    QDP13
+
+% 15      FX14    FY14    FZ14    CX14    CY14    CZ14    0       0       0       0
+
+% Base velocity, base accelerations, and gravity
+
+% j       W0      WP0     V0      VP0     G
+
+% 1       WX0     WPX0    VX0     VPX0    -9.81
+
+% 2       WY0     WPY0    VY0     VPY0    0
+
+% 3       WZ0     WPZ0    VZ0     VPZ0    0
+
+%  Dynamic model: Newton Euler method
+% Equations:
+
+% Declaration of the function
+function [F_foot, M_foot, Torque] = Def_0_14_tuned_f0_dyn(Q, QD, QDD, OVDotO,OWDotO,OWO,F,M)
+
+% Declaration of global input variables
+global Lt L1 L2 L3 L4 L5 L6 L7 L8 L9 L10 L11 Lp lp L
+% global M1 M3 M4 M11 M12 M14 M15 M16 M19 M20 M23 M24 M25
+% global MX1 MX3 MX4 MX11 MX12 MX14 MX15 MX16 MX19 MX20 MX23 MX24 MX25
+% global MY1 MY3 MY4 MY11 MY12 MY14 MY15 MY16 MY19 MY20 MY23 MY24 MY25
+% global MZ1 MZ3 MZ4 MZ11 MZ12 MZ14 MZ15 MZ16 MZ19 MZ20 MZ23 MZ24 MZ25
+% global XX1 XX3 XX4 XX11 XX12 XX14 XX15 XX16 XX19 XX20 XX23 XX24 XX25
+% global YY1 YY3 YY4 YY11 YY12 YY14 YY15 YY16 YY19 YY20 YY23 YY24 YY25
+% global ZZ1 ZZ3 ZZ4 ZZ11 ZZ12 ZZ14 ZZ15 ZZ16 ZZ19 ZZ20 ZZ23 ZZ24 ZZ25
+
+t1 = Q(1,:);
+    t2 = Q(2,:);
+    t3 = Q(3,:);
+    t4 = Q(4,:);
+    t5 = Q(5,:);
+    t6 = Q(6,:);
+    t8 = Q(7,:);
+    t9 = Q(8,:);
+    t10 = Q(9,:);
+    t11 = Q(10,:);
+    t12 = Q(11,:);
+    t13 = Q(12,:);
+
+    
+    QP1 = QD(1,:);
+    QP2 = QD(2,:);
+    QP3 = QD(3,:);
+    QP4 = QD(4,:);
+    QP5 = QD(5,:);
+    QP6 = QD(6,:);
+    QP8 = QD(7,:);
+    QP9 = QD(8,:);
+    QP10 = QD(9,:);
+    QP11 = QD(10,:);
+    QP12 = QD(11,:);
+    QP13 = QD(12,:);
+
+    
+    QDP1 = QDD(1,:);
+    QDP2 = QDD(2,:);
+    QDP3 = QDD(3,:);
+    QDP4 = QDD(4,:);
+    QDP5 = QDD(5,:);
+    QDP6 = QDD(6,:);
+    QDP8 = QDD(7,:);
+    QDP9 = QDD(8,:);
+    QDP10 = QDD(9,:);
+    QDP11 = QDD(10,:);
+    QDP12 = QDD(11,:);
+    QDP13 = QDD(12,:);
+
+    
+    
+    WX0 = OWO(1);
+    WY0 = OWO(2);
+    WZ0 = OWO(3);
+    
+    WPX0 = OWDotO(1);
+    WPY0 = OWDotO(2);
+    WPZ0 = OWDotO(3);
+            
+    VPX0 = OVDotO(1);
+    VPY0 = OVDotO(2);
+    VPZ0 = OVDotO(3);
+    
+    FX14 = F(1,:);
+    FY14 = F(2,:);
+    FZ14 = F(3,:);
+    
+    CX14 = M(1,:);
+    CY14 = M(2,:);
+    CZ14 = M(3,:);
+    
+%/* Parameters Joint 0 */ 
+ M0   = 1.071550000000000;
+ 
+ MX0 =   0.023863418500000;
+ MY0  = -0.132272132000000;
+ MZ0  = -0.006461446500000;
+ 
+ XX0  =  0.064804232698000;
+%  XY0  =  0.000000000000000;
+%  XZ0  =  0.000000000000000;
+ YY0  =  0.058458873030000;
+%  YZ0  = -0.014588938940000;
+ ZZ0  =  0.008374752388000;
+ 
+%  IA0  =  0.000000000000000;
+
+%/* Parameters Joint 1 */ 
+ M1   =  1.02;
+ 
+ MX1 =  -0.0386149516235616;
+ MY1  = 0.00664893206763312;
+ MZ1  = 0.0976881557629173;
+ 
+ XX1  =   0.00913;
+%  XY1  =  0.000000000000000;
+%  XZ1  =  0.000000000000000;
+ YY1  =   0.0086;
+%  YZ1  = -0.014588938940000;
+ ZZ1  =   0.001927;
+ 
+ IA1  =  0.800000000000000;
+ 
+%/* Parameters Joint 2 */ 
+ M2  =  4.08;
+ 
+ MX2  =   0.266326;
+ MY2  = -0.000255408000000;
+ MZ2  =   -0.0031598;
+ 
+ XX2  =  0.008313487968;
+%  XY2  =  0.000000000000000;
+%  XZ2  =  0.000000000000000;
+ YY2  =  0.06517774566912;
+%  YZ2  =  0.000000000000000;
+ ZZ2  =  0.06517774566912;
+ 
+ IA2 =   0.800000000000000;
+ 
+%/* Parameters Joint 3 */ 
+ M3  =  10.455;
+ 
+ MX3  =  0.2521536;
+ MY3 =  -0.0181056;
+ MZ3  = -0.0145728;
+ 
+ XX3  =  0.045873796608;
+%  XY3  =  0.000000000000000;
+%  XZ3  =  0.000000000000000;
+ YY3  =  0.17146605754368;
+%  YZ3  =  0.000000000000000;
+ ZZ3  =  0.183495186432;
+ 
+ IA3  =  0.800000000000000;
+ 
+%/* Parameters Joint 4 */ 
+ M4  =  2;
+ 
+ MX4  =  0.000190304000000;
+ MY4  =  0.000190304000000;
+ MZ4  =  0.000190304000000;
+ XX4  =  0.000190304000000;
+%  XY4  =  0.000000000000000;
+%  XZ4   = 0.000000000000000;
+ YY4  =  0.000190304000000;
+%  YZ4 =   0.000000000000000;
+ ZZ4  =  0.000190304000000;
+ 
+ IA4   = 0.800000000000000;
+ 
+ %/* Parameters Joint 5 */ 
+ M5  =  2;
+ 
+ MX5  =  0.000190304000000;
+ MY5  =  0.000190304000000;
+ MZ5  =  0.000190304000000;
+ XX5  =  0.000190304000000;
+%  XY5  =  0.000000000000000;
+%  XZ5   = 0.000000000000000;
+ YY5  =  0.000190304000000;
+%  YZ5 =   0.000000000000000;
+ ZZ5  =  0.000190304000000;
+ 
+ IA5   = 0.800000000000000;
+ 
+ %/* Parameters Joint 6 */ 
+ M6  =  2;
+ 
+ MX6  =  0.000190304000000;
+ MY6  =  0.000190304000000;
+ MZ6  =  0.000190304000000;
+ XX6  =  0.000190304000000;
+%  XY6  =  0.000000000000000;
+%  XZ6   = 0.000000000000000;
+ YY6  =  0.000190304000000;
+%  YZ6 =   0.000000000000000;
+ ZZ6  =  0.000190304000000;
+ 
+ IA6   = 0.800000000000000; 
+ 
+ %/* Parameters Joint 7 */ 
+ M7  =  12.07;
+ 
+ MX7  =  0.0008244;
+ MY7  =  -0.0038472;
+ MZ7  =  0.098928;
+ XX7  =  0.205649636463;
+%  XY7  =  0.000000000000000;
+%  XZ7   = 0.000000000000000;
+ YY7  =   0.23244675252732;
+%  YZ7 =   0.000000000000000;
+ ZZ7  =   0.25603094906352;
+ 
+ IA7   = 0.00000000000000;
+  
+ %/* Parameters Joint 8 */ 
+ M8  =  2;
+ 
+ MX8  =  0.000190304000000;
+ MY8  =  0.000190304000000;
+ MZ8  =  0.000190304000000;
+ XX8  =  0.000190304000000;
+%  XY8  =  0.000000000000000;
+%  XZ8   = 0.000000000000000;
+ YY8  =  0.000190304000000;
+%  YZ8 =   0.000000000000000;
+ ZZ8  =  0.000190304000000;
+ 
+ IA8   = 0.800000000000000;
+ 
+ %/* Parameters Joint 9 */ 
+ M9  =  2;
+ 
+ MX9  =  0.000190304000000;
+ MY9  =  0.000190304000000;
+ MZ9  =  0.000190304000000;
+ XX9  =  0.000190304000000;
+%  XY9  =  0.000000000000000;
+%  XZ9   = 0.000000000000000;
+ YY9  =  0.000190304000000;
+%  YZ9 =   0.000000000000000;
+ ZZ9  =  0.000190304000000;
+ 
+ IA9   = 0.800000000000000;
+ 
+ 
+ %/* Parameters Joint 10 */ 
+ M10  =  10.455;
+ 
+ MX10  =  0.1894464;
+ MY10  =   0.0181056;
+ MZ10  =  0.0145728;
+ XX10  =  0.045873796608;
+%  XY10  =  0.000000000000000;
+%  XZ10   = 0.000000000000000;
+ YY10  =  0.17146605754368;
+%  YZ10 =   0.000000000000000;
+ ZZ10  =  0.183495186432;
+ 
+ IA10   = 0.800000000000000;
+ 
+ %/* Parameters Joint 11 */ 
+ M11  =  4.08;
+ 
+ MX11  =  0.185074;
+ MY11  =   0.0216672;
+ MZ11  =  0.0031598;
+ XX11  =   0.008313487968;
+%  XY11  =  0.000000000000000;
+%  XZ11   = 0.000000000000000;
+ YY11  =  0.06517774566912;
+%  YZ11 =   0.000000000000000;
+ ZZ11  =  0.06517774566912;
+ 
+ IA11   = 0.800000000000000;
+ 
+ %/* Parameters Joint 12 */ 
+ M12  =  2;
+ 
+ MX12  =  0.000190304000000;
+ MY12  =  0.000190304000000;
+ MZ12  =  0.000190304000000;
+ XX12  =  0.000190304000000;
+%  XY12  =  0.000000000000000;
+%  XZ12   = 0.000000000000000;
+ YY12  =  0.000190304000000;
+%  YZ12 =   0.000000000000000;
+ ZZ12  =  0.000190304000000;
+ 
+ IA12   = 0.800000000000000;
+ 
+ %/* Parameters Joint 13 */ 
+ M13  =  1.02;
+ 
+ MX13  =   -0.217113204823866;
+ MY13  =  0.00664893206763312;
+ MZ13  =  0.0976881557629173;
+ XX13  =  0.00913189092582;
+%  XY13  =  0.000000000000000;
+%  XZ13   = 0.000000000000000;
+ YY13  =   0.00864494568288;
+%  YZ13 =   0.000000000000000;
+ ZZ13  =  0.00192776952342;
+ 
+ IA13   = 0.800000000000000;
+ 
+ 
+ %/* Parameters Joint 14 */ 
+ M14  =  1;
+ 
+ MX14  =  0;
+ MY14  =  0;
+ MZ14  =  0;
+ XX14  =  0;
+%  XY14  =  0.000000000000000;
+%  XZ14   = 0.000000000000000;
+ YY14  =  0;
+%  YZ14 =   0.000000000000000;
+ ZZ14  =  0;
+ 
+ IA14   = 0.00000000000000;
+% Function description:
+
+	S2=sin(t1);
+	C2=cos(t1);
+	S3=sin(t2);
+	C3=cos(t2);
+	S4=sin(t3);
+	C4=cos(t3);
+	S5=sin(t4);
+	C5=cos(t4);
+	S6=-cos(t5);
+	C6=sin(t5);
+	S7=sin(t6);
+	C7=cos(t6);
+	LOO18=L5./2.;
+	S9=sin(t8);
+	C9=cos(t8);
+	LOO19=L5./2.;
+	S10=-cos(t9);
+	C10=sin(t9);
+	S11=sin(t10);
+	C11=cos(t10);
+	S12=sin(t11);
+	C12=cos(t11);
+	S13=sin(t12);
+	C13=cos(t12);
+	S14=sin(t13);
+	C14=cos(t13);
+	DV111=-WX0.^2;
+	DV221=-WY0.^2;
+	DV331=-WZ0.^2;
+	DV121=WX0.*WY0;
+	DV131=WX0.*WZ0;
+	DV231=WY0.*WZ0;
+	U111=DV221 + DV331;
+	U121=DV121 - WPZ0;
+	U131=DV131 + WPY0;
+	U211=DV121 + WPZ0;
+	U221=DV111 + DV331;
+	U231=DV231 - WPX0;
+	U311=DV131 - WPY0;
+	U321=DV231 + WPX0;
+	U331=DV111 + DV221;
+	VSP11=9.81 + VPX0;
+	F11=MX0.*U111 + MY0.*U121 + MZ0.*U131 + M0.*VSP11;
+	F21=MX0.*U211 + MY0.*U221 + MZ0.*U231 + M0.*VPY0;
+	F31=MX0.*U311 + MY0.*U321 + MZ0.*U331 + M0.*VPZ0;
+	PIS11=-YY0 + ZZ0;
+	PIS21=XX0 - ZZ0;
+	PIS31=-XX0 + YY0;
+	No11=DV231.*PIS11 + WPX0.*XX0;
+	No21=DV131.*PIS21 + WPY0.*YY0;
+	No31=DV121.*PIS31 + WPZ0.*ZZ0;
+	WI12=C2.*WX0 + S2.*WY0;
+	WI22=-(S2.*WX0) + C2.*WY0;
+	W32=QP1 + WZ0;
+	WP12=QP1.*WI22 + C2.*WPX0 + S2.*WPY0;
+	WP22=-(QP1.*WI12) - S2.*WPX0 + C2.*WPY0;
+	WP32=QDP1 + WPZ0;
+	DV112=-WI12.^2;
+	DV222=-WI22.^2;
+	DV332=-W32.^2;
+	DV122=WI12.*WI22;
+	DV132=W32.*WI12;
+	DV232=W32.*WI22;
+	U112=DV222 + DV332;
+	U122=DV122 - WP32;
+	U132=DV132 + WP22;
+	U212=DV122 + WP32;
+	U222=DV112 + DV332;
+	U232=DV232 - WP12;
+	U312=DV132 - WP22;
+	U322=DV232 + WP12;
+	U332=DV112 + DV222;
+	VSP12=L2.*U111 - L1.*U131 + VSP11;
+	VSP22=L2.*U211 - L1.*U231 + VPY0;
+	VSP32=L2.*U311 - L1.*U331 + VPZ0;
+	VP12=C2.*VSP12 + S2.*VSP22;
+	VP22=-(S2.*VSP12) + C2.*VSP22;
+	F12=MX1.*U112 + MY1.*U122 + MZ1.*U132 + M1.*VP12;
+	F22=MX1.*U212 + MY1.*U222 + MZ1.*U232 + M1.*VP22;
+	F32=MX1.*U312 + MY1.*U322 + MZ1.*U332 + M1.*VSP32;
+	PIS12=-YY1 + ZZ1;
+	PIS22=XX1 - ZZ1;
+	PIS32=-XX1 + YY1;
+	No12=DV232.*PIS12 + WP12.*XX1;
+	No22=DV132.*PIS22 + WP22.*YY1;
+	No32=DV122.*PIS32 + WP32.*ZZ1;
+	WI13=S3.*W32 + C3.*WI12;
+	WI23=C3.*W32 - S3.*WI12;
+	W33=QP2 - WI22;
+	WP13=QP2.*WI23 + C3.*WP12 + S3.*WP32;
+	WP23=-(QP2.*WI13) - S3.*WP12 + C3.*WP32;
+	WP33=QDP2 - WP22;
+	DV113=-WI13.^2;
+	DV223=-WI23.^2;
+	DV333=-W33.^2;
+	DV123=WI13.*WI23;
+	DV133=W33.*WI13;
+	DV233=W33.*WI23;
+	U113=DV223 + DV333;
+	U123=DV123 - WP33;
+	U133=DV133 + WP23;
+	U213=DV123 + WP33;
+	U223=DV113 + DV333;
+	U233=DV233 - WP13;
+	U313=DV133 - WP23;
+	U323=DV233 + WP13;
+	U333=DV113 + DV223;
+	VP13=C3.*VP12 + S3.*VSP32;
+	VP23=-(S3.*VP12) + C3.*VSP32;
+	F13=MX2.*U113 + MY2.*U123 + MZ2.*U133 + M2.*VP13;
+	F23=MX2.*U213 + MY2.*U223 + MZ2.*U233 + M2.*VP23;
+	F33=MX2.*U313 + MY2.*U323 + MZ2.*U333 - M2.*VP22;
+	PIS13=-YY2 + ZZ2;
+	PIS23=XX2 - ZZ2;
+	PIS33=-XX2 + YY2;
+	No13=DV233.*PIS13 + WP13.*XX2;
+	No23=DV133.*PIS23 + WP23.*YY2;
+	No33=DV123.*PIS33 + WP33.*ZZ2;
+	WI14=C4.*WI13 + S4.*WI23;
+	WI24=-(S4.*WI13) + C4.*WI23;
+	W34=QP3 + W33;
+	WP14=QP3.*WI24 + C4.*WP13 + S4.*WP23;
+	WP24=-(QP3.*WI14) - S4.*WP13 + C4.*WP23;
+	WP34=QDP3 + WP33;
+	DV114=-WI14.^2;
+	DV224=-WI24.^2;
+	DV334=-W34.^2;
+	DV124=WI14.*WI24;
+	DV134=W34.*WI14;
+	DV234=W34.*WI24;
+	U114=DV224 + DV334;
+	U124=DV124 - WP34;
+	U134=DV134 + WP24;
+	U214=DV124 + WP34;
+	U224=DV114 + DV334;
+	U234=DV234 - WP14;
+	U314=DV134 - WP24;
+	U324=DV234 + WP14;
+	U334=DV114 + DV224;
+	VSP14=L3.*U113 + VP13;
+	VSP24=L3.*U213 + VP23;
+	VSP34=L3.*U313 - VP22;
+	VP14=C4.*VSP14 + S4.*VSP24;
+	VP24=-(S4.*VSP14) + C4.*VSP24;
+	F14=MX3.*U114 + MY3.*U124 + MZ3.*U134 + M3.*VP14;
+	F24=MX3.*U214 + MY3.*U224 + MZ3.*U234 + M3.*VP24;
+	F34=MX3.*U314 + MY3.*U324 + MZ3.*U334 + M3.*VSP34;
+	PIS14=-YY3 + ZZ3;
+	PIS24=XX3 - ZZ3;
+	PIS34=-XX3 + YY3;
+	No14=DV234.*PIS14 + WP14.*XX3;
+	No24=DV134.*PIS24 + WP24.*YY3;
+	No34=DV124.*PIS34 + WP34.*ZZ3;
+	WI15=C5.*WI14 + S5.*WI24;
+	WI25=-(S5.*WI14) + C5.*WI24;
+	W35=QP4 + W34;
+	WP15=QP4.*WI25 + C5.*WP14 + S5.*WP24;
+	WP25=-(QP4.*WI15) - S5.*WP14 + C5.*WP24;
+	WP35=QDP4 + WP34;
+	DV115=-WI15.^2;
+	DV225=-WI25.^2;
+	DV335=-W35.^2;
+	DV125=WI15.*WI25;
+	DV135=W35.*WI15;
+	DV235=W35.*WI25;
+	U115=DV225 + DV335;
+	U125=DV125 - WP35;
+	U135=DV135 + WP25;
+	U215=DV125 + WP35;
+	U225=DV115 + DV335;
+	U235=DV235 - WP15;
+	U315=DV135 - WP25;
+	U325=DV235 + WP15;
+	U335=DV115 + DV225;
+	VSP15=L4.*U114 + VP14;
+	VSP25=L4.*U214 + VP24;
+	VSP35=L4.*U314 + VSP34;
+	VP15=C5.*VSP15 + S5.*VSP25;
+	VP25=-(S5.*VSP15) + C5.*VSP25;
+	F15=MX4.*U115 + MY4.*U125 + MZ4.*U135 + M4.*VP15;
+	F25=MX4.*U215 + MY4.*U225 + MZ4.*U235 + M4.*VP25;
+	F35=MX4.*U315 + MY4.*U325 + MZ4.*U335 + M4.*VSP35;
+	PIS15=-YY4 + ZZ4;
+	PIS25=XX4 - ZZ4;
+	PIS35=-XX4 + YY4;
+	No15=DV235.*PIS15 + WP15.*XX4;
+	No25=DV135.*PIS25 + WP25.*YY4;
+	No35=DV125.*PIS35 + WP35.*ZZ4;
+	WI16=-(S6.*W35) + C6.*WI15;
+	WI26=-(C6.*W35) - S6.*WI15;
+	W36=QP5 + WI25;
+	WP16=QP5.*WI26 + C6.*WP15 - S6.*WP35;
+	WP26=-(QP5.*WI16) - S6.*WP15 - C6.*WP35;
+	WP36=QDP5 + WP25;
+	DV116=-WI16.^2;
+	DV226=-WI26.^2;
+	DV336=-W36.^2;
+	DV126=WI16.*WI26;
+	DV136=W36.*WI16;
+	DV236=W36.*WI26;
+	U116=DV226 + DV336;
+	U126=DV126 - WP36;
+	U136=DV136 + WP26;
+	U216=DV126 + WP36;
+	U226=DV116 + DV336;
+	U236=DV236 - WP16;
+	U316=DV136 - WP26;
+	U326=DV236 + WP16;
+	U336=DV116 + DV226;
+	VP16=C6.*VP15 - S6.*VSP35;
+	VP26=-(S6.*VP15) - C6.*VSP35;
+	F16=MX5.*U116 + MY5.*U126 + MZ5.*U136 + M5.*VP16;
+	F26=MX5.*U216 + MY5.*U226 + MZ5.*U236 + M5.*VP26;
+	F36=MX5.*U316 + MY5.*U326 + MZ5.*U336 + M5.*VP25;
+	PIS16=-YY5 + ZZ5;
+	PIS26=XX5 - ZZ5;
+	PIS36=-XX5 + YY5;
+	No16=DV236.*PIS16 + WP16.*XX5;
+	No26=DV136.*PIS26 + WP26.*YY5;
+	No36=DV126.*PIS36 + WP36.*ZZ5;
+	WI17=-(S7.*W36) + C7.*WI16;
+	WI27=-(C7.*W36) - S7.*WI16;
+	W37=QP6 + WI26;
+	WP17=QP6.*WI27 + C7.*WP16 - S7.*WP36;
+	WP27=-(QP6.*WI17) - S7.*WP16 - C7.*WP36;
+	WP37=QDP6 + WP26;
+	DV117=-WI17.^2;
+	DV227=-WI27.^2;
+	DV337=-W37.^2;
+	DV127=WI17.*WI27;
+	DV137=W37.*WI17;
+	DV237=W37.*WI27;
+	U117=DV227 + DV337;
+	U127=DV127 - WP37;
+	U137=DV137 + WP27;
+	U217=DV127 + WP37;
+	U227=DV117 + DV337;
+	U237=DV237 - WP17;
+	U317=DV137 - WP27;
+	U327=DV237 + WP17;
+	U337=DV117 + DV227;
+	VP17=C7.*VP16 - S7.*VP25;
+	VP27=-(S7.*VP16) - C7.*VP25;
+	F17=MX6.*U117 + MY6.*U127 + MZ6.*U137 + M6.*VP17;
+	F27=MX6.*U217 + MY6.*U227 + MZ6.*U237 + M6.*VP27;
+	F37=MX6.*U317 + MY6.*U327 + MZ6.*U337 + M6.*VP26;
+	PIS17=-YY6 + ZZ6;
+	PIS27=XX6 - ZZ6;
+	PIS37=-XX6 + YY6;
+	No17=DV237.*PIS17 + WP17.*XX6;
+	No27=DV137.*PIS27 + WP27.*YY6;
+	No37=DV127.*PIS37 + WP37.*ZZ6;
+	DV118=-WI17.^2;
+	DV228=-WI27.^2;
+	DV338=-W37.^2;
+	DV128=WI17.*WI27;
+	DV138=W37.*WI17;
+	DV238=W37.*WI27;
+	U118=DV228 + DV338;
+	U128=DV128 - WP37;
+	U138=DV138 + WP27;
+	U218=DV128 + WP37;
+	U228=DV118 + DV338;
+	U238=DV238 - WP17;
+	U318=DV138 - WP27;
+	U328=DV238 + WP17;
+	U338=DV118 + DV228;
+	VSP18=LOO18.*U117 + VP17;
+	VSP28=LOO18.*U217 + VP27;
+	VSP38=LOO18.*U317 + VP26;
+	F18=MX7.*U118 + MY7.*U128 + MZ7.*U138 + M7.*VSP18;
+	F28=MX7.*U218 + MY7.*U228 + MZ7.*U238 + M7.*VSP28;
+	F38=MX7.*U318 + MY7.*U328 + MZ7.*U338 + M7.*VSP38;
+	PIS18=-YY7 + ZZ7;
+	PIS28=XX7 - ZZ7;
+	PIS38=-XX7 + YY7;
+	No18=DV238.*PIS18 + WP17.*XX7;
+	No28=DV138.*PIS28 + WP27.*YY7;
+	No38=DV128.*PIS38 + WP37.*ZZ7;
+	WI19=C9.*WI17 + S9.*WI27;
+	WI29=-(S9.*WI17) + C9.*WI27;
+	W39=QP8 + W37;
+	WP19=QP8.*WI29 + C9.*WP17 + S9.*WP27;
+	WP29=-(QP8.*WI19) - S9.*WP17 + C9.*WP27;
+	WP39=QDP8 + WP37;
+	DV119=-WI19.^2;
+	DV229=-WI29.^2;
+	DV339=-W39.^2;
+	DV129=WI19.*WI29;
+	DV139=W39.*WI19;
+	DV239=W39.*WI29;
+	U119=DV229 + DV339;
+	U129=DV129 - WP39;
+	U139=DV139 + WP29;
+	U219=DV129 + WP39;
+	U229=DV119 + DV339;
+	U239=DV239 - WP19;
+	U319=DV139 - WP29;
+	U329=DV239 + WP19;
+	U339=DV119 + DV229;
+	VSP19=LOO19.*U118 + VSP18;
+	VSP29=LOO19.*U218 + VSP28;
+	VSP39=LOO19.*U318 + VSP38;
+	VP19=C9.*VSP19 + S9.*VSP29;
+	VP29=-(S9.*VSP19) + C9.*VSP29;
+	F19=MX8.*U119 + MY8.*U129 + MZ8.*U139 + M8.*VP19;
+	F29=MX8.*U219 + MY8.*U229 + MZ8.*U239 + M8.*VP29;
+	F39=MX8.*U319 + MY8.*U329 + MZ8.*U339 + M8.*VSP39;
+	PIS19=-YY8 + ZZ8;
+	PIS29=XX8 - ZZ8;
+	PIS39=-XX8 + YY8;
+	No19=DV239.*PIS19 + WP19.*XX8;
+	No29=DV139.*PIS29 + WP29.*YY8;
+	No39=DV129.*PIS39 + WP39.*ZZ8;
+	WI110=S10.*W39 + C10.*WI19;
+	WI210=C10.*W39 - S10.*WI19;
+	W310=QP9 - WI29;
+	WP110=QP9.*WI210 + C10.*WP19 + S10.*WP39;
+	WP210=-(QP9.*WI110) - S10.*WP19 + C10.*WP39;
+	WP310=QDP9 - WP29;
+	DV1110=-WI110.^2;
+	DV2210=-WI210.^2;
+	DV3310=-W310.^2;
+	DV1210=WI110.*WI210;
+	DV1310=W310.*WI110;
+	DV2310=W310.*WI210;
+	U1110=DV2210 + DV3310;
+	U1210=DV1210 - WP310;
+	U1310=DV1310 + WP210;
+	U2110=DV1210 + WP310;
+	U2210=DV1110 + DV3310;
+	U2310=DV2310 - WP110;
+	U3110=DV1310 - WP210;
+	U3210=DV2310 + WP110;
+	U3310=DV1110 + DV2210;
+	VP110=C10.*VP19 + S10.*VSP39;
+	VP210=-(S10.*VP19) + C10.*VSP39;
+	F110=MX9.*U1110 + MY9.*U1210 + MZ9.*U1310 + M9.*VP110;
+	F210=MX9.*U2110 + MY9.*U2210 + MZ9.*U2310 + M9.*VP210;
+	F310=MX9.*U3110 + MY9.*U3210 + MZ9.*U3310 - M9.*VP29;
+	PIS110=-YY9 + ZZ9;
+	PIS210=XX9 - ZZ9;
+	PIS310=-XX9 + YY9;
+	No110=DV2310.*PIS110 + WP110.*XX9;
+	No210=DV1310.*PIS210 + WP210.*YY9;
+	No310=DV1210.*PIS310 + WP310.*ZZ9;
+	WI111=-(S11.*W310) + C11.*WI110;
+	WI211=-(C11.*W310) - S11.*WI110;
+	W311=QP10 + WI210;
+	WP111=QP10.*WI211 + C11.*WP110 - S11.*WP310;
+	WP211=-(QP10.*WI111) - S11.*WP110 - C11.*WP310;
+	WP311=QDP10 + WP210;
+	DV1111=-WI111.^2;
+	DV2211=-WI211.^2;
+	DV3311=-W311.^2;
+	DV1211=WI111.*WI211;
+	DV1311=W311.*WI111;
+	DV2311=W311.*WI211;
+	U1111=DV2211 + DV3311;
+	U1211=DV1211 - WP311;
+	U1311=DV1311 + WP211;
+	U2111=DV1211 + WP311;
+	U2211=DV1111 + DV3311;
+	U2311=DV2311 - WP111;
+	U3111=DV1311 - WP211;
+	U3211=DV2311 + WP111;
+	U3311=DV1111 + DV2211;
+	VP111=C11.*VP110 + S11.*VP29;
+	VP211=-(S11.*VP110) + C11.*VP29;
+	F111=MX10.*U1111 + MY10.*U1211 + MZ10.*U1311 + M10.*VP111;
+	F211=MX10.*U2111 + MY10.*U2211 + MZ10.*U2311 + M10.*VP211;
+	F311=MX10.*U3111 + MY10.*U3211 + MZ10.*U3311 + M10.*VP210;
+	PIS111=-YY10 + ZZ10;
+	PIS211=XX10 - ZZ10;
+	PIS311=-XX10 + YY10;
+	No111=DV2311.*PIS111 + WP111.*XX10;
+	No211=DV1311.*PIS211 + WP211.*YY10;
+	No311=DV1211.*PIS311 + WP311.*ZZ10;
+	WI112=C12.*WI111 + S12.*WI211;
+	WI212=-(S12.*WI111) + C12.*WI211;
+	W312=QP11 + W311;
+	WP112=QP11.*WI212 + C12.*WP111 + S12.*WP211;
+	WP212=-(QP11.*WI112) - S12.*WP111 + C12.*WP211;
+	WP312=QDP11 + WP311;
+	DV1112=-WI112.^2;
+	DV2212=-WI212.^2;
+	DV3312=-W312.^2;
+	DV1212=WI112.*WI212;
+	DV1312=W312.*WI112;
+	DV2312=W312.*WI212;
+	U1112=DV2212 + DV3312;
+	U1212=DV1212 - WP312;
+	U1312=DV1312 + WP212;
+	U2112=DV1212 + WP312;
+	U2212=DV1112 + DV3312;
+	U2312=DV2312 - WP112;
+	U3112=DV1312 - WP212;
+	U3212=DV2312 + WP112;
+	U3312=DV1112 + DV2212;
+	VSP112=L4.*U1111 + VP111;
+	VSP212=L4.*U2111 + VP211;
+	VSP312=L4.*U3111 + VP210;
+	VP112=C12.*VSP112 + S12.*VSP212;
+	VP212=-(S12.*VSP112) + C12.*VSP212;
+	F112=MX11.*U1112 + MY11.*U1212 + MZ11.*U1312 + M11.*VP112;
+	F212=MX11.*U2112 + MY11.*U2212 + MZ11.*U2312 + M11.*VP212;
+	F312=MX11.*U3112 + MY11.*U3212 + MZ11.*U3312 + M11.*VSP312;
+	PIS112=-YY11 + ZZ11;
+	PIS212=XX11 - ZZ11;
+	PIS312=-XX11 + YY11;
+	No112=DV2312.*PIS112 + WP112.*XX11;
+	No212=DV1312.*PIS212 + WP212.*YY11;
+	No312=DV1212.*PIS312 + WP312.*ZZ11;
+	WI113=C13.*WI112 + S13.*WI212;
+	WI213=-(S13.*WI112) + C13.*WI212;
+	W313=QP12 + W312;
+	WP113=QP12.*WI213 + C13.*WP112 + S13.*WP212;
+	WP213=-(QP12.*WI113) - S13.*WP112 + C13.*WP212;
+	WP313=QDP12 + WP312;
+	DV1113=-WI113.^2;
+	DV2213=-WI213.^2;
+	DV3313=-W313.^2;
+	DV1213=WI113.*WI213;
+	DV1313=W313.*WI113;
+	DV2313=W313.*WI213;
+	U1113=DV2213 + DV3313;
+	U1213=DV1213 - WP313;
+	U1313=DV1313 + WP213;
+	U2113=DV1213 + WP313;
+	U2213=DV1113 + DV3313;
+	U2313=DV2313 - WP113;
+	U3113=DV1313 - WP213;
+	U3213=DV2313 + WP113;
+	U3313=DV1113 + DV2213;
+	VSP113=L3.*U1112 + VP112;
+	VSP213=L3.*U2112 + VP212;
+	VSP313=L3.*U3112 + VSP312;
+	VP113=C13.*VSP113 + S13.*VSP213;
+	VP213=-(S13.*VSP113) + C13.*VSP213;
+	F113=MX12.*U1113 + MY12.*U1213 + MZ12.*U1313 + M12.*VP113;
+	F213=MX12.*U2113 + MY12.*U2213 + MZ12.*U2313 + M12.*VP213;
+	F313=MX12.*U3113 + MY12.*U3213 + MZ12.*U3313 + M12.*VSP313;
+	PIS113=-YY12 + ZZ12;
+	PIS213=XX12 - ZZ12;
+	PIS313=-XX12 + YY12;
+	No113=DV2313.*PIS113 + WP113.*XX12;
+	No213=DV1313.*PIS213 + WP213.*YY12;
+	No313=DV1213.*PIS313 + WP313.*ZZ12;
+	WI114=S14.*W313 + C14.*WI113;
+	WI214=C14.*W313 - S14.*WI113;
+	W314=QP13 - WI213;
+	WP114=QP13.*WI214 + C14.*WP113 + S14.*WP313;
+	WP214=-(QP13.*WI114) - S14.*WP113 + C14.*WP313;
+	WP314=QDP13 - WP213;
+	DV1114=-WI114.^2;
+	DV2214=-WI214.^2;
+	DV3314=-W314.^2;
+	DV1214=WI114.*WI214;
+	DV1314=W314.*WI114;
+	DV2314=W314.*WI214;
+	U1114=DV2214 + DV3314;
+	U1214=DV1214 - WP314;
+	U1314=DV1314 + WP214;
+	U2114=DV1214 + WP314;
+	U2214=DV1114 + DV3314;
+	U2314=DV2314 - WP114;
+	U3114=DV1314 - WP214;
+	U3214=DV2314 + WP114;
+	U3314=DV1114 + DV2214;
+	VP114=C14.*VP113 + S14.*VSP313;
+	VP214=-(S14.*VP113) + C14.*VSP313;
+	F114=MX13.*U1114 + MY13.*U1214 + MZ13.*U1314 + M13.*VP114;
+	F214=MX13.*U2114 + MY13.*U2214 + MZ13.*U2314 + M13.*VP214;
+	F314=MX13.*U3114 + MY13.*U3214 + MZ13.*U3314 - M13.*VP213;
+	PIS114=-YY13 + ZZ13;
+	PIS214=XX13 - ZZ13;
+	PIS314=-XX13 + YY13;
+	No114=DV2314.*PIS114 + WP114.*XX13;
+	No214=DV1314.*PIS214 + WP214.*YY13;
+	No314=DV1214.*PIS314 + WP314.*ZZ13;
+	DV1115=-WI114.^2;
+	DV2215=-WI214.^2;
+	DV3315=-W314.^2;
+	DV1215=WI114.*WI214;
+	DV1315=W314.*WI114;
+	DV2315=W314.*WI214;
+	U1115=DV2215 + DV3315;
+	U1215=DV1215 - WP314;
+	U1315=DV1315 + WP214;
+	U2115=DV1215 + WP314;
+	U2215=DV1115 + DV3315;
+	U2315=DV2315 - WP114;
+	U3115=DV1315 - WP214;
+	U3215=DV2315 + WP114;
+	U3315=DV1115 + DV2215;
+	VSP115=L2.*U1114 + L1.*U1314 + VP114;
+	VSP215=L2.*U2114 + L1.*U2314 + VP214;
+	VSP315=L2.*U3114 + L1.*U3314 - VP213;
+	F115=MX14.*U1115 + MY14.*U1215 + MZ14.*U1315 + M14.*VSP115;
+	F215=MX14.*U2115 + MY14.*U2215 + MZ14.*U2315 + M14.*VSP215;
+	F315=MX14.*U3115 + MY14.*U3215 + MZ14.*U3315 + M14.*VSP315;
+	PIS115=-YY14 + ZZ14;
+	PIS215=XX14 - ZZ14;
+	PIS315=-XX14 + YY14;
+	No115=DV2315.*PIS115 + WP114.*XX14;
+	No215=DV1315.*PIS215 + WP214.*YY14;
+	No315=DV1215.*PIS315 + WP314.*ZZ14;
+	E115=F115 + FX14;
+	E215=F215 + FY14;
+	E315=F315 + FZ14;
+	N115=CX14 + No115 - MZ14.*VSP215 + MY14.*VSP315;
+	N215=CY14 + No215 + MZ14.*VSP115 - MX14.*VSP315;
+	N315=CZ14 + No315 - MY14.*VSP115 + MX14.*VSP215;
+	E114=E115 + F114;
+	E214=E215 + F214;
+	E314=E315 + F314;
+	N114=-(E215.*L1) + N115 + No114 - MY13.*VP213 - MZ13.*VP214;
+	N214=E115.*L1 - E315.*L2 + N215 + No214 + MZ13.*VP114 + MX13.*VP213;
+	N314=E215.*L2 + N315 + No314 - MY13.*VP114 + MX13.*VP214;
+	FDI114=C14.*E114 - E214.*S14;
+	FDI314=C14.*E214 + E114.*S14;
+	E113=F113 + FDI114;
+	E213=-E314 + F213;
+	E313=F313 + FDI314;
+	N113=C14.*N114 + No113 - N214.*S14 - MZ12.*VP213 + MY12.*VSP313;
+	N213=-N314 + No213 + MZ12.*VP113 - MX12.*VSP313;
+	N313=C14.*N214 + No313 + N114.*S14 - MY12.*VP113 + MX12.*VP213;
+	FDI113=C13.*E113 - E213.*S13;
+	FDI213=C13.*E213 + E113.*S13;
+	E112=F112 + FDI113;
+	E212=F212 + FDI213;
+	E312=E313 + F312;
+	N112=C13.*N113 + No112 - N213.*S13 - MZ11.*VP212 + MY11.*VSP312;
+	N212=-(E313.*L3) + C13.*N213 + No212 + N113.*S13 + MZ11.*VP112 - MX11.*VSP312;
+	N312=FDI213.*L3 + N313 + No312 - MY11.*VP112 + MX11.*VP212;
+	FDI112=C12.*E112 - E212.*S12;
+	FDI212=C12.*E212 + E112.*S12;
+	E111=F111 + FDI112;
+	E211=F211 + FDI212;
+	E311=E312 + F311;
+	N111=C12.*N112 + No111 - N212.*S12 + MY10.*VP210 - MZ10.*VP211;
+	N211=-(E312.*L4) + C12.*N212 + No211 + N112.*S12 + MZ10.*VP111 - MX10.*VP210;
+	N311=FDI212.*L4 + N312 + No311 - MY10.*VP111 + MX10.*VP211;
+	FDI111=C11.*E111 - E211.*S11;
+	FDI311=-(C11.*E211) - E111.*S11;
+	E110=F110 + FDI111;
+	E210=E311 + F210;
+	E310=F310 + FDI311;
+	N110=C11.*N111 + No110 - N211.*S11 - MZ9.*VP210 - MY9.*VP29;
+	N210=N311 + No210 + MZ9.*VP110 + MX9.*VP29;
+	N310=-(C11.*N211) + No310 - N111.*S11 - MY9.*VP110 + MX9.*VP210;
+	FDI110=C10.*E110 - E210.*S10;
+	FDI310=C10.*E210 + E110.*S10;
+	E19=F19 + FDI110;
+	E29=-E310 + F29;
+	E39=F39 + FDI310;
+	N19=C10.*N110 + No19 - N210.*S10 - MZ8.*VP29 + MY8.*VSP39;
+	N29=-N310 + No29 + MZ8.*VP19 - MX8.*VSP39;
+	N39=C10.*N210 + No39 + N110.*S10 - MY8.*VP19 + MX8.*VP29;
+	FDI19=C9.*E19 - E29.*S9;
+	FDI29=C9.*E29 + E19.*S9;
+	E18=F18 + FDI19;
+	E28=F28 + FDI29;
+	E38=E39 + F38;
+	N18=C9.*N19 + No18 - N29.*S9 - MZ7.*VSP28 + MY7.*VSP38;
+	N28=-(E39.*LOO19) + C9.*N29 + No28 + N19.*S9 + MZ7.*VSP18 - MX7.*VSP38;
+	N38=FDI29.*LOO19 + N39 + No38 - MY7.*VSP18 + MX7.*VSP28;
+	E17=E18 + F17;
+	E27=E28 + F27;
+	E37=E38 + F37;
+	N17=N18 + No17 + MY6.*VP26 - MZ6.*VP27;
+	N27=-(E38.*LOO18) + N28 + No27 + MZ6.*VP17 - MX6.*VP26;
+	N37=E28.*LOO18 + N38 + No37 - MY6.*VP17 + MX6.*VP27;
+	FDI17=C7.*E17 - E27.*S7;
+	FDI37=-(C7.*E27) - E17.*S7;
+	E16=F16 + FDI17;
+	E26=E37 + F26;
+	E36=F36 + FDI37;
+	N16=C7.*N17 + No16 - N27.*S7 + MY5.*VP25 - MZ5.*VP26;
+	N26=N37 + No26 + MZ5.*VP16 - MX5.*VP25;
+	N36=-(C7.*N27) + No36 - N17.*S7 - MY5.*VP16 + MX5.*VP26;
+	FDI16=C6.*E16 - E26.*S6;
+	FDI36=-(C6.*E26) - E16.*S6;
+	E15=F15 + FDI16;
+	E25=E36 + F25;
+	E35=F35 + FDI36;
+	N15=C6.*N16 + No15 - N26.*S6 - MZ4.*VP25 + MY4.*VSP35;
+	N25=N36 + No25 + MZ4.*VP15 - MX4.*VSP35;
+	N35=-(C6.*N26) + No35 - N16.*S6 - MY4.*VP15 + MX4.*VP25;
+	FDI15=C5.*E15 - E25.*S5;
+	FDI25=C5.*E25 + E15.*S5;
+	E14=F14 + FDI15;
+	E24=F24 + FDI25;
+	E34=E35 + F34;
+	N14=C5.*N15 + No14 - N25.*S5 - MZ3.*VP24 + MY3.*VSP34;
+	N24=-(E35.*L4) + C5.*N25 + No24 + N15.*S5 + MZ3.*VP14 - MX3.*VSP34;
+	N34=FDI25.*L4 + N35 + No34 - MY3.*VP14 + MX3.*VP24;
+	FDI14=C4.*E14 - E24.*S4;
+	FDI24=C4.*E24 + E14.*S4;
+	E13=F13 + FDI14;
+	E23=F23 + FDI24;
+	E33=E34 + F33;
+	N13=C4.*N14 + No13 - N24.*S4 - MY2.*VP22 - MZ2.*VP23;
+	N23=-(E34.*L3) + C4.*N24 + No23 + N14.*S4 + MZ2.*VP13 + MX2.*VP22;
+	N33=FDI24.*L3 + N34 + No33 - MY2.*VP13 + MX2.*VP23;
+	FDI13=C3.*E13 - E23.*S3;
+	FDI33=C3.*E23 + E13.*S3;
+	E12=F12 + FDI13;
+	E22=-E33 + F22;
+	E32=F32 + FDI33;
+	N12=C3.*N13 + No12 - N23.*S3 - MZ1.*VP22 + MY1.*VSP32;
+	N22=-N33 + No22 + MZ1.*VP12 - MX1.*VSP32;
+	N32=C3.*N23 + No32 + N13.*S3 - MY1.*VP12 + MX1.*VP22;
+	FDI12=C2.*E12 - E22.*S2;
+	FDI22=C2.*E22 + E12.*S2;
+	E11=F11 + FDI12;
+	E21=F21 + FDI22;
+	E31=E32 + F31;
+	N11=FDI22.*L1 + C2.*N12 + No11 - N22.*S2 - MZ0.*VPY0 + MY0.*VPZ0;
+	N21=-(FDI12.*L1) - E32.*L2 + C2.*N22 + No21 + N12.*S2 - MX0.*VPZ0 + MZ0.*VSP11;
+	N31=FDI22.*L2 + N32 + No31 + MX0.*VPY0 - MY0.*VSP11;
+	GAM2=N32 + IA1.*QDP1;
+	GAM3=N33 + IA2.*QDP2;
+	GAM4=N34 + IA3.*QDP3;
+	GAM5=N35 + IA4.*QDP4;
+	GAM6=N36 + IA5.*QDP5;
+	GAM7=N37 + IA6.*QDP6;
+	GAM9=N39 + IA8.*QDP8;
+	GAM10=N310 + IA9.*QDP9;
+	GAM11=N311 + IA10.*QDP10;
+	GAM12=N312 + IA11.*QDP11;
+	GAM13=N313 + IA12.*QDP12;
+	GAM14=N314 + IA13.*QDP13;
+	E10=E11;
+	E20=E21;
+	E30=E31;
+	N10=N11;
+	N20=N21;
+	N30=N31;
+
+    Torque(1,:) = GAM2;
+	Torque(2,:) = GAM3;
+	Torque(3,:) = GAM4;
+	Torque(4,:) = GAM5;
+	Torque(5,:) = GAM6;
+	Torque(6,:) = GAM7;
+	Torque(7,:) = GAM9;
+	Torque(8,:) = GAM10;
+	Torque(9,:) = GAM11;
+	Torque(10,:) = GAM12;
+	Torque(11,:) = GAM13;
+	Torque(12,:) = GAM14;
+
+    
+    F_foot(1,:) = E10;
+	F_foot(2,:) = E20;
+	F_foot(3,:) = E30;
+	M_foot(1,:) = N10;
+	M_foot(2,:) = N20;
+	M_foot(3,:) = N30;
+% *=*
+% Number of operations : 771 '+' or '-', 778 '*' or '/'
+end
